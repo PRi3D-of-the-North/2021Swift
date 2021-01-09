@@ -19,4 +19,6 @@ public final class Constants {
                             DRIVETRAIN_SHIFTING_SOLENOID = 0,
                             RAMP_SOLENOID = 1;
 
+    public static final int TIMEOUT_MS = 30,
+                            COUNTS_PER_REVOLUTION_ENCODER = 4096;
 }
