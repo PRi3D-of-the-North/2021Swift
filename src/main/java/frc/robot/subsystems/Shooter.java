@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,7 +17,7 @@ import frc.robot.Constants;
     private final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration (true, 40.0, 60.0, 1.0);
     
     private WPI_TalonSRX motor1 = new WPI_TalonSRX(Constants.SHOOTER_MOTOR_1);
-    private WPI_TalonSRX motor2 = new WPI_TalonSRX(Constants.SHOOTER_MOTOR_2);
+    private WPI_VictorSPX motor2 = new WPI_VictorSPX(Constants.SHOOTER_MOTOR_2);
 
   public Shooter() {
     motor1.configFactoryDefault();
@@ -34,7 +35,6 @@ import frc.robot.Constants;
     motor2.configClosedLoopPeakOutput(0, 1.0);
   
     motor1.configSupplyCurrentLimit(CURRENT_LIMIT);
-    motor2.configSupplyCurrentLimit(CURRENT_LIMIT);
 
     motor1.configOpenloopRamp(RAMP_RATE);
     motor2.configOpenloopRamp(RAMP_RATE);

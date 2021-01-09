@@ -11,8 +11,12 @@ import frc.robot.commands.DrivetrainArcadeDrive;
 import frc.robot.commands.DrivetrainShiftingSetState;
 import frc.robot.commands.FeederWheelSetPercentOutput;
 import frc.robot.commands.GrapplerSetState;
+import frc.robot.commands.HopperSetPercentOutput;
 import frc.robot.commands.IntakeMotorSetPercentOutput;
 import frc.robot.commands.IntakePistonsSetState;
+import frc.robot.commands.LimelightDriversMode;
+import frc.robot.commands.ShooterSetPercentOutput;
+import frc.robot.commands.TurretSetPercentOutput;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainShifting;
@@ -46,12 +50,12 @@ public class RobotContainer {
 		mDrivetrainShifting.setDefaultCommand(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
 		mFeederWheel.setDefaultCommand(new FeederWheelSetPercentOutput(mFeederWheel, 0.0));
 		mGrappler.setDefaultCommand(new GrapplerSetState(mGrappler, false));
-		//mHopper.setDefaultCommand(new );
+		mHopper.setDefaultCommand(new HopperSetPercentOutput(mHopper, 0.0));
 		mIntakeMotor.setDefaultCommand(new IntakeMotorSetPercentOutput(mIntakeMotor, 0.0));
 		mIntakePistons.setDefaultCommand(new IntakePistonsSetState(mIntakePistons, true));
-		//mLimelight.setDefaultCommand(new );
-		//mShooter.setDefaultCommand(new );
-		//mTurret.setDefaultCommand(new );
+		mLimelight.setDefaultCommand(new LimelightDriversMode(mLimelight));
+		mShooter.setDefaultCommand(new ShooterSetPercentOutput(mShooter, 0.0));
+		mTurret.setDefaultCommand(new TurretSetPercentOutput(mTurret, 0.0));
 
 		configureButtonBindings();
 
