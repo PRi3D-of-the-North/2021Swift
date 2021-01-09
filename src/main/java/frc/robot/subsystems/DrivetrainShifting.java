@@ -1,11 +1,12 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DrivetrainShifting extends SubsystemBase {
-  private Solenoid mPistons = new Solenoid(Constants.DRIVETRAIN_SHIFTING_SOLENOID);
+  private final DoubleSolenoid mPistons = new DoubleSolenoid(Constants.DRIVETRAIN_SHIFTING_SOLENOID_FORWARD, Constants.DRIVETRAIN_SHIFTING_SOLENOID_REVERSE);
 
   public DrivetrainShifting() {
   }
@@ -14,11 +15,11 @@ public class DrivetrainShifting extends SubsystemBase {
   public void periodic() {
   }
 
-  public void setPistonsState (boolean highGear) {
+  public void setPistonsState(boolean highGear) {
     if (highGear) {
-      mPistons.set(false);
+      mPistons.set(Value.kReverse);
     } else {
-      mPistons.set(true);
+      mPistons.set(Value.kForward);
     }
   }
 }

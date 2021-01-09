@@ -11,56 +11,56 @@ import frc.robot.Constants;
 public class Drivetrain extends SubsystemBase {
   private final double RAMP_RATE = 0.3;
 
-  private final WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_1);
-  private final WPI_TalonFX leftMotor2 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_2);
-  private final WPI_TalonFX leftMotor3 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_3);
-  private final WPI_TalonFX rightMotor1 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_1);
-  private final WPI_TalonFX rightMotor2 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_2);
-  private final WPI_TalonFX rightMotor3 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_3);
+  private final WPI_TalonFX mLeftMotor1 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_1);
+  private final WPI_TalonFX mLeftMotor2 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_2);
+  private final WPI_TalonFX mLeftMotor3 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_3);
+  private final WPI_TalonFX mRightMotor1 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_1);
+  private final WPI_TalonFX mRightMotor2 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_2);
+  private final WPI_TalonFX mRightMotor3 = new WPI_TalonFX(Constants.DRIVETRAIN_RIGHT_MOTOR_3);
 
-  private DifferentialDrive drive = new DifferentialDrive(leftMotor1, rightMotor1);
+  private final DifferentialDrive mDrive = new DifferentialDrive(mLeftMotor1, mRightMotor1);
 
   public Drivetrain() {
-    leftMotor1.configFactoryDefault();
-    leftMotor2.configFactoryDefault();
-    leftMotor3.configFactoryDefault();
-    rightMotor1.configFactoryDefault();
-    rightMotor2.configFactoryDefault();
-    rightMotor3.configFactoryDefault();
+    mLeftMotor1.configFactoryDefault();
+    mLeftMotor2.configFactoryDefault();
+    mLeftMotor3.configFactoryDefault();
+    mRightMotor1.configFactoryDefault();
+    mRightMotor2.configFactoryDefault();
+    mRightMotor3.configFactoryDefault();
 
-    leftMotor2.follow(leftMotor1);
-    leftMotor3.follow(leftMotor1);
-    rightMotor2.follow(rightMotor1);
-    rightMotor3.follow(rightMotor1);
+    mLeftMotor2.follow(mLeftMotor1);
+    mLeftMotor3.follow(mLeftMotor1);
+    mRightMotor2.follow(mRightMotor1);
+    mRightMotor3.follow(mRightMotor1);
 
-    leftMotor1.setInverted(true);
-    leftMotor2.setInverted(InvertType.FollowMaster);
-    leftMotor3.setInverted(InvertType.FollowMaster);
-    rightMotor1.setInverted(false);
-    rightMotor2.setInverted(InvertType.FollowMaster);
-    rightMotor3.setInverted(InvertType.FollowMaster);
+    mLeftMotor1.setInverted(true);
+    mLeftMotor2.setInverted(InvertType.FollowMaster);
+    mLeftMotor3.setInverted(InvertType.FollowMaster);
+    mRightMotor1.setInverted(false);
+    mRightMotor2.setInverted(InvertType.FollowMaster);
+    mRightMotor3.setInverted(InvertType.FollowMaster);
   
-    leftMotor1.setNeutralMode(NeutralMode.Brake);
-    leftMotor2.setNeutralMode(NeutralMode.Brake);
-    leftMotor3.setNeutralMode(NeutralMode.Brake);
-    rightMotor1.setNeutralMode(NeutralMode.Brake);
-    rightMotor2.setNeutralMode(NeutralMode.Brake);
-    rightMotor3.setNeutralMode(NeutralMode.Brake);
+    mLeftMotor1.setNeutralMode(NeutralMode.Brake);
+    mLeftMotor2.setNeutralMode(NeutralMode.Brake);
+    mLeftMotor3.setNeutralMode(NeutralMode.Brake);
+    mRightMotor1.setNeutralMode(NeutralMode.Brake);
+    mRightMotor2.setNeutralMode(NeutralMode.Brake);
+    mRightMotor3.setNeutralMode(NeutralMode.Brake);
 
-    leftMotor1.configOpenloopRamp(RAMP_RATE);
-    leftMotor2.configOpenloopRamp(RAMP_RATE);
-    leftMotor3.configOpenloopRamp(RAMP_RATE);
-    rightMotor1.configOpenloopRamp(RAMP_RATE);
-    rightMotor2.configOpenloopRamp(RAMP_RATE);
-    rightMotor3.configOpenloopRamp(RAMP_RATE);
+    mLeftMotor1.configOpenloopRamp(RAMP_RATE);
+    mLeftMotor2.configOpenloopRamp(RAMP_RATE);
+    mLeftMotor3.configOpenloopRamp(RAMP_RATE);
+    mRightMotor1.configOpenloopRamp(RAMP_RATE);
+    mRightMotor2.configOpenloopRamp(RAMP_RATE);
+    mRightMotor3.configOpenloopRamp(RAMP_RATE);
 
-    leftMotor1.configVoltageCompSaturation(12.0);
-    rightMotor1.configVoltageCompSaturation(12.0);
+    mLeftMotor1.configVoltageCompSaturation(12.0);
+    mRightMotor1.configVoltageCompSaturation(12.0);
 
-    leftMotor1.enableVoltageCompensation(true);
-    rightMotor1.enableVoltageCompensation(true);
+    mLeftMotor1.enableVoltageCompensation(true);
+    mRightMotor1.enableVoltageCompensation(true);
 
-    drive.setRightSideInverted(false);
+    mDrive.setRightSideInverted(false);
   }
 
   @Override
@@ -77,7 +77,7 @@ public class Drivetrain extends SubsystemBase {
     if (Math.abs(rotate) < MIN_ROTATE_THRESHOLD)
       rotate = 0.0;
     
-    drive.arcadeDrive(move, rotate);
+    mDrive.arcadeDrive(move, rotate);
   }
 
 }

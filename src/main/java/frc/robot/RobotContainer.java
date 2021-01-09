@@ -6,29 +6,62 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ClimberSetPercentOutput;
 import frc.robot.commands.DrivetrainArcadeDrive;
 import frc.robot.commands.DrivetrainShiftingSetState;
+import frc.robot.commands.FeederWheelSetPercentOutput;
+import frc.robot.commands.GrapplerSetState;
+import frc.robot.commands.IntakeMotorSetPercentOutput;
+import frc.robot.commands.IntakePistonsSetState;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainShifting;
+import frc.robot.subsystems.FeederWheel;
+import frc.robot.subsystems.Grappler;
+import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.IntakePistons;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 
 public class RobotContainer {
-  private final XboxController mXbox = new XboxController(0);
+	private final XboxController mXbox = new XboxController(0);
 	private final Joystick mJoystick = new Joystick(1);
-  private final Drivetrain mDrivetrain = new Drivetrain();
-  private final DrivetrainShifting mDrivetrainShifting = new DrivetrainShifting();
+	private final Climber mClimber = new Climber();
+	private final Drivetrain mDrivetrain = new Drivetrain();
+	private final DrivetrainShifting mDrivetrainShifting = new DrivetrainShifting();
+	private final FeederWheel mFeederWheel = new FeederWheel();
+	private final Grappler mGrappler = new Grappler();
+	private final Hopper mHopper = new Hopper();
+	private final IntakeMotor mIntakeMotor = new IntakeMotor();
+	private final IntakePistons mIntakePistons = new IntakePistons();
+	private final Limelight mLimelight = new Limelight();
+	private final Shooter mShooter = new Shooter();
+	private final Turret mTurret = new Turret();
 
-  public RobotContainer() {
-    mDrivetrain.setDefaultCommand(new DrivetrainArcadeDrive(mDrivetrain, mXbox));
+	public RobotContainer() {
+		mClimber.setDefaultCommand(new ClimberSetPercentOutput(mClimber, 0.0));
+		mDrivetrain.setDefaultCommand(new DrivetrainArcadeDrive(mDrivetrain, mXbox));
+		mDrivetrainShifting.setDefaultCommand(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
+		mFeederWheel.setDefaultCommand(new FeederWheelSetPercentOutput(mFeederWheel, 0.0));
+		mGrappler.setDefaultCommand(new GrapplerSetState(mGrappler, false));
+		//mHopper.setDefaultCommand(new );
+		mIntakeMotor.setDefaultCommand(new IntakeMotorSetPercentOutput(mIntakeMotor, 0.0));
+		mIntakePistons.setDefaultCommand(new IntakePistonsSetState(mIntakePistons, true));
+		//mLimelight.setDefaultCommand(new );
+		//mShooter.setDefaultCommand(new );
+		//mTurret.setDefaultCommand(new );
 
-    configureButtonBindings();
+		configureButtonBindings();
 
-    UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
 		cam0.setResolution(320, 240);
-    cam0.setFPS(10);
-  }
+		cam0.setFPS(10);
+	}
 
-  private void configureButtonBindings() {
-    JoystickButton xButtonA, xButtonB, xButtonX, xButtonY, xButtonLeftBumper, xButtonRightBumper, xButtonLeftStick,
+	private void configureButtonBindings() {
+		JoystickButton xButtonA, xButtonB, xButtonX, xButtonY, xButtonLeftBumper, xButtonRightBumper, xButtonLeftStick,
 				xButtonRightStick;
 		JoystickButton jButton1, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9,
 				jButton10, jButton11, jButton12;
@@ -53,14 +86,13 @@ public class RobotContainer {
 		jButton9 = new JoystickButton(mJoystick, 9);
 		jButton10 = new JoystickButton(mJoystick, 10);
 		jButton11 = new JoystickButton(mJoystick, 11);
-    jButton12 = new JoystickButton(mJoystick, 12);
-    
-    xButtonA.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, false));
+		jButton12 = new JoystickButton(mJoystick, 12);
+
+		xButtonA.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, false));
 		xButtonB.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
-  }
+	}
 
-
-  public Command getAutonomousCommand() {
-    return null;
-  }
+	public Command getAutonomousCommand() {
+		return null;
+	}
 }

@@ -7,13 +7,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Climber extends SubsystemBase {
+public class IntakeMotor extends SubsystemBase {
   private final int CURRENT_LIMIT = 30;
-  private final CANSparkMax mMotor = new CANSparkMax(Constants.CLIMBER_MOTOR, MotorType.kBrushless);
+  private final CANSparkMax mMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushed);
   
-  public Climber() {
+  public IntakeMotor() {
     mMotor.restoreFactoryDefaults();
-    mMotor.setMotorType(MotorType.kBrushless);
+    mMotor.setMotorType(MotorType.kBrushed);
     mMotor.setInverted(true);
     mMotor.setIdleMode(IdleMode.kBrake);
     mMotor.setSmartCurrentLimit(CURRENT_LIMIT);
