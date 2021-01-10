@@ -4,7 +4,6 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ClimberSetPercentOutput;
 import frc.robot.commands.DrivetrainArcadeDrive;
@@ -16,7 +15,10 @@ import frc.robot.commands.IntakeMotorSetPercentOutput;
 import frc.robot.commands.IntakePistonsSetState;
 import frc.robot.commands.LimelightDriversMode;
 import frc.robot.commands.ShooterSetPercentOutput;
-import frc.robot.commands.TurretSetPercentOutput;
+import frc.robot.commands.ShooterSetPercentOutputWithThrottle;
+import frc.robot.commands.TurretSetPercentOutputWithJoystick;
+import frc.robot.commands.automated.AimingAndShooting;
+import frc.robot.commands.automated.HopperSpinToLimit;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainShifting;
@@ -50,12 +52,12 @@ public class RobotContainer {
 		mDrivetrainShifting.setDefaultCommand(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
 		mFeederWheel.setDefaultCommand(new FeederWheelSetPercentOutput(mFeederWheel, 0.0));
 		mGrappler.setDefaultCommand(new GrapplerSetState(mGrappler, false));
-		mHopper.setDefaultCommand(new HopperSetPercentOutput(mHopper, 0.0));
+		mHopper.setDefaultCommand(new HopperSpinToLimit(mHopper, 0.4));
 		mIntakeMotor.setDefaultCommand(new IntakeMotorSetPercentOutput(mIntakeMotor, 0.0));
 		mIntakePistons.setDefaultCommand(new IntakePistonsSetState(mIntakePistons, true));
 		mLimelight.setDefaultCommand(new LimelightDriversMode(mLimelight));
 		mShooter.setDefaultCommand(new ShooterSetPercentOutput(mShooter, 0.0));
-		mTurret.setDefaultCommand(new TurretSetPercentOutput(mTurret, 0.0));
+		mTurret.setDefaultCommand(new TurretSetPercentOutputWithJoystick(mTurret, mJoystick));
 
 		configureButtonBindings();
 
@@ -94,9 +96,18 @@ public class RobotContainer {
 
 		xButtonA.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, false));
 		xButtonB.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
-	}
 
-	public Command getAutonomousCommand() {
-		return null;
+		jButton1.whileHeld(new HopperSetPercentOutput(mHopper, 0.75));
+		jButton2.whileHeld(new AimingAndShooting(mLimelight, mFeederWheel, mShooter, mTurret, mJoystick, 2000.0)); //TODO Tune #
+
+		jButton3.whileHeld(new HopperSetPercentOutput(mHopper, -0.4));
+		jButton4.whileHeld(new HopperSetPercentOutput(mHopper, 0.4));
+		jButton5.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, -1.0));
+		jButton6.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, 1.0));
+		jButton7.whenPressed(new IntakePistonsSetState(mIntakePistons, false));
+		jButton8.whenPressed(new IntakePistonsSetState(mIntakePistons, true));
+
+		jButton11.whenPressed(new GrapplerSetState(mGrappler, true));
+		jButton12.whileHeld(new ClimberSetPercentOutput(mClimber, 1.0));
 	}
 }

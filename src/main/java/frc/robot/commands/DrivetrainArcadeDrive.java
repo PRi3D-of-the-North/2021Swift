@@ -23,7 +23,7 @@ public class DrivetrainArcadeDrive extends CommandBase {
   @Override
   public void execute() {
     double move = mController.getTriggerAxis(Hand.kRight) - mController.getTriggerAxis(Hand.kLeft);
-    double rotate = (.533333 * Math.pow(mController.getX(Hand.kLeft), 3) + .466666 *  mController.getX(Hand.kLeft));
+    double rotate = -(.533333 * Math.pow(mController.getX(Hand.kLeft), 3) + .466666 *  mController.getX(Hand.kLeft));
 
     if (rotate > 0.85){
       rotate = 0.85;

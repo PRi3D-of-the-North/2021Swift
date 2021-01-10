@@ -9,14 +9,18 @@ public final class Constants {
                             DRIVETRAIN_RIGHT_MOTOR_3 = 6;
 
     public static final int SHOOTER_MOTOR_1 = 7,            //TalonSRX //Encoder
-                            HOPPER_MOTOR = 8,                          //Encoder
+                            HOPPER_MOTOR = 8,
                             TURRET_MOTOR = 9;
 
     public static final int SHOOTER_MOTOR_2 = 1;            //VictorSPX
 
-    public static final int CLIMBER_MOTOR = 1,              //SparkMAX //Encoder (Not Used)
-                            FEEDER_WHEEL_MOTOR = 2,                    //Encoder
-                            INTAKE_MOTOR = 3;
+    public static final int CLIMBER_MOTOR = 2,              //SparkMAX //Encoder (Not Used)
+                            FEEDER_WHEEL_MOTOR = 3,                    //Encoder
+                            INTAKE_MOTOR = 1;
+
+    public static final int TURRET_LEFT_LIMIT = 0,          //DIO
+                            TURRET_RIGHT_LIMIT = 1,
+                            HOPPER_LIMIT_SWITCH = 2;
 
     public static final int COMPRESSOR = 0,                 //Pneumatics Control Module
 

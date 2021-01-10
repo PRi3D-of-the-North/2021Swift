@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
-  private final double RAMP_RATE = 0.3;
+  private final double RAMP_RATE = 0.15;
 
   private final WPI_TalonFX mLeftMotor1 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_1);
   private final WPI_TalonFX mLeftMotor2 = new WPI_TalonFX(Constants.DRIVETRAIN_LEFT_MOTOR_2);
@@ -33,10 +33,10 @@ public class Drivetrain extends SubsystemBase {
     mRightMotor2.follow(mRightMotor1);
     mRightMotor3.follow(mRightMotor1);
 
-    mLeftMotor1.setInverted(true);
+    mLeftMotor1.setInverted(false);
     mLeftMotor2.setInverted(InvertType.FollowMaster);
     mLeftMotor3.setInverted(InvertType.FollowMaster);
-    mRightMotor1.setInverted(false);
+    mRightMotor1.setInverted(true);
     mRightMotor2.setInverted(InvertType.FollowMaster);
     mRightMotor3.setInverted(InvertType.FollowMaster);
   
