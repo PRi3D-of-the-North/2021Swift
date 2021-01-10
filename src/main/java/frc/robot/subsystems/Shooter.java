@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.tools.UnitConversion;
 
   public class Shooter extends SubsystemBase {
     private final double RAMP_RATE = 0.2;
@@ -42,7 +43,7 @@ import frc.robot.Constants;
     mMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.TIMEOUT_MS);
     mMotor1.setSensorPhase(true);
 
-    mMotor1.config_kF(0, 0.5, Constants.TIMEOUT_MS);
+    mMotor1.config_kF(0, 0.5, Constants.TIMEOUT_MS); //TODO Tune
     mMotor1.config_kP(0, 0.0, Constants.TIMEOUT_MS);
 		mMotor1.config_kI(0, 0.0, Constants.TIMEOUT_MS);
     mMotor1.config_kD(0, 0.0, Constants.TIMEOUT_MS);
@@ -68,12 +69,13 @@ import frc.robot.Constants;
   }
 
   public void setVelocity(double RPM) {
-    int velocityInSRXUnits = (int) (RPM / 600.0 * Constants.COUNTS_PER_REVOLUTION_ENCODER);
+    SmartDashboard.putNumber("Target RPM", RPM);
+    int velocityInSRXUnits = (int) UnitConversion.convertRotationsToSRXUnits(RPM);
     mMotor1.set(ControlMode.Velocity, velocityInSRXUnits);
   }
 
   public double getRPM() {
-    double RPM = mMotor1.getSelectedSensorVelocity() * 600.0 / Constants.COUNTS_PER_REVOLUTION_ENCODER;
+    double RPM = UnitConversion.convertSRXUnitsToRotations(mMotor1.getSelectedSensorVelocity());
     return RPM;
   }
 }

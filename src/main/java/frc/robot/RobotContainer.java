@@ -98,12 +98,12 @@ public class RobotContainer {
 		xButtonB.whenPressed(new DrivetrainShiftingSetState(mDrivetrainShifting, true));
 
 		jButton1.whileHeld(new HopperSetPercentOutput(mHopper, 0.75));
-		jButton2.whileHeld(new AimingAndShooting(mLimelight, mFeederWheel, mShooter, mTurret, mJoystick, 2000.0)); //TODO Tune #
+		jButton2.whileHeld(new AimingAndShooting(mLimelight, mFeederWheel, mShooter, mTurret, mJoystick, Constants.FEEDER_WHEELS_RPM)); //TODO 
 
-		jButton3.whileHeld(new HopperSetPercentOutput(mHopper, -0.4));
-		jButton4.whileHeld(new HopperSetPercentOutput(mHopper, 0.4));
-		jButton5.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, -1.0));
-		jButton6.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, 1.0));
+		jButton3.whileHeld(new HopperSetPercentOutput(mHopper, -0.5));
+		jButton4.whileHeld(new HopperSetPercentOutput(mHopper, 0.5));
+		jButton5.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, -0.8));
+		jButton6.whileHeld(new IntakeMotorSetPercentOutput(mIntakeMotor, 0.8));
 		jButton7.whenPressed(new IntakePistonsSetState(mIntakePistons, false));
 		jButton8.whenPressed(new IntakePistonsSetState(mIntakePistons, true));
 

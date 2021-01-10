@@ -14,9 +14,9 @@ public final class Constants {
 
     public static final int SHOOTER_MOTOR_2 = 1;            //VictorSPX
 
-    public static final int CLIMBER_MOTOR = 2,              //SparkMAX //Encoder (Not Used)
-                            FEEDER_WHEEL_MOTOR = 3,                    //Encoder
-                            INTAKE_MOTOR = 1;
+    public static final int CLIMBER_MOTOR = 1,              //SparkMAX //Encoder (Not Used)
+                            FEEDER_WHEEL_MOTOR = 2,               //Encoder
+                            INTAKE_MOTOR = 3;
 
     public static final int TURRET_LEFT_LIMIT = 0,          //DIO
                             TURRET_RIGHT_LIMIT = 1,
@@ -32,10 +32,9 @@ public final class Constants {
                             GRAPPLER_SOLENOID_REVERSE = 5;
 
     public static final int TIMEOUT_MS = 30,
-                            COUNTS_PER_REVOLUTION_ENCODER = 4096;
+                            COUNTS_PER_REVOLUTION_ENCODER_SRX = 4096,
+                            COUNTS_PER_REVOLUTION_ENCODER_MAX = 42;
     
     public static final double EPSILON = 0.0001,
-                               FEEDER_WHEELS_RPM = 3000.0,
-                               HOPPER_RPM = 40.0,
-                               SHOOTER_RPM = 4250.0;
+                               FEEDER_WHEELS_RPM = 3000.0; //TODO Tune #
 }

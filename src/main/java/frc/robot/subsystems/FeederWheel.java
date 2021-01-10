@@ -1,14 +1,13 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -29,7 +28,7 @@ public class FeederWheel extends SubsystemBase {
     mEncoder = mMotor.getEncoder();
     mPIDController = mMotor.getPIDController();
 
-    mPIDController.setP(0.001);
+    mPIDController.setP(0.0); //TODO Tune
     mPIDController.setI(0.0);
     mPIDController.setD(0.0);
     mPIDController.setFF(0.000015);
@@ -39,6 +38,8 @@ public class FeederWheel extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Feeder Wheel RMP", getRPM());
+    SmartDashboard.putNumber("Feeder Wheel Encoder Value", mEncoder.getCountsPerRevolution());
   }
 
   public void setPercentOutput(double output) {
@@ -51,13 +52,14 @@ public class FeederWheel extends SubsystemBase {
     mMotor.set(output);
   }
 
-  public void setVelocity(double RPM) { //42 counts per rev
-    double sparkMAXUnits = -1; //TODO Math
-    mPIDController.setReference(sparkMAXUnits, ControlType.kVelocity);
+  public void setVelocity(double RPM) {
+    double RPMAfterGearing = RPM * 3.0;
+    SmartDashboard.putNumber("Feeder Wheel Target Velocity", RPMAfterGearing);
+    mPIDController.setReference(RPMAfterGearing, ControlType.kVelocity);
   }
 
-  public double getRPM() { //TODO Math Needed
-    double RPM = mMotor.getEncoder().getVelocity();
+  public double getRPM() {
+    double RPM = mEncoder.getVelocity() / 3.0;
     return RPM;
   }
 }
