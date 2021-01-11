@@ -26,10 +26,10 @@ public final class Constants {
 
                             DRIVETRAIN_SHIFTING_SOLENOID_FORWARD = 0,
                             DRIVETRAIN_SHIFTING_SOLENOID_REVERSE = 1,
-                            INTAKE_SOLENOID_FORWARD = 2,
-                            INTAKE_SOLENOID_REVERSE = 3,
-                            GRAPPLER_SOLENOID_FORWARD = 4,
-                            GRAPPLER_SOLENOID_REVERSE = 5;
+                            GRAPPLER_SOLENOID_FORWARD = 2,
+                            GRAPPLER_SOLENOID_REVERSE = 3,
+                            INTAKE_SOLENOID_FORWARD = 4,
+                            INTAKE_SOLENOID_REVERSE = 5;
 
     public static final int TIMEOUT_MS = 30,
                             COUNTS_PER_REVOLUTION_ENCODER_SRX = 4096,
