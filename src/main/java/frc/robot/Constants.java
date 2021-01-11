@@ -32,8 +32,7 @@ public final class Constants {
                             INTAKE_SOLENOID_REVERSE = 5;
 
     public static final int TIMEOUT_MS = 30,
-                            COUNTS_PER_REVOLUTION_ENCODER_SRX = 4096,
-                            COUNTS_PER_REVOLUTION_ENCODER_MAX = 42;
+                            COUNTS_PER_REVOLUTION_ENCODER_SRX = 4096;
     
     public static final double EPSILON = 0.0001,
                                FEEDER_WHEELS_RPM = 3000.0; //TODO Tune #
